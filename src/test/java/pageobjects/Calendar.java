@@ -28,8 +28,8 @@ public class Calendar extends BaseClass{
     public static class AddEventPage
     {
 
-        @FindBy(how=How.XPATH, using="Add")
-        public static WebElement add;
+        @FindBy(how=How.NAME, using="Every Day")
+        public static WebElement everyday;
 
         @FindBy(how=How.NAME, using="Never")
         public static WebElement never_link;

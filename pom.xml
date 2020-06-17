@@ -23,22 +23,22 @@
         </dependency>
 
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.2.6</version>
+            <version>6.1.1</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>1.2.6</version>
+            <version>6.1.1</version>
         </dependency>
 
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
-            <version>1.2.6</version>
+            <version>6.1.1</version>
         </dependency>
 
         <dependency>
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>xml-apis</groupId>
             <artifactId>xml-apis</artifactId>
-            <version>2.0.2</version>
+            <version>1.0.b2</version>
         </dependency>
 
         <dependency>

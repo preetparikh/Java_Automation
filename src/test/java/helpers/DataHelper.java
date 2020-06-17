@@ -19,7 +19,7 @@ public class DataHelper {
 		try
 		{
 
-			FileInputStream fs = new FileInputStream("classpath:TestData-seleniumframework.xlsx");
+			FileInputStream fs = new FileInputStream("classpath:TestData.xlsx");
 			XSSFWorkbook workbook = new XSSFWorkbook(fs);
 			XSSFSheet sheet = workbook.getSheet("SignInSignOut");
 			Row HeaderRow = sheet.getRow(0);

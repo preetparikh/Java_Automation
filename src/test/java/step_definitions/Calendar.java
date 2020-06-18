@@ -3,11 +3,10 @@ package step_definitions;
 import helpers.DataHelper;
 import helpers.Log;
 import io.appium.java_client.AppiumDriver;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.And;
-import org.testng.Assert;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.testng.Reporter;
 
 import java.util.HashMap;

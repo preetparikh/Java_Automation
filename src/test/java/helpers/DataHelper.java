@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DataHelper {
-	
+
 	public static List<HashMap<String,String>> data()
 	{
 
@@ -51,7 +51,7 @@ public class DataHelper {
 		{
 			e.printStackTrace();
 		}
-		
+
 		return mydata;
 
 	}

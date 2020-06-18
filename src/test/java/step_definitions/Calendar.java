@@ -8,7 +8,6 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.testng.Reporter;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,8 +16,8 @@ public class Calendar {
     public List<HashMap<String,String>> datamap = DataHelper.data();
 
 
-    @Given("^I have launched the Calendar App$")
-    public void i_have_launched_the_calendar_app() throws Throwable {
+    @Given("I have launched the Calendar App")
+    public void i_have_launched_the_calendar_app()  {
 
         boolean continue_button_present = pageobjects.Calendar.continue_button.isDisplayed();
         boolean allow_button_present = pageobjects.Calendar.allow_while_using.isDisplayed();
@@ -38,8 +37,8 @@ public class Calendar {
         }
     }
 
-    @Then("^I want to book a meeting with the title Introduction$")
-    public void i_want_to_book_a_meeting_with_the_title_introduction(HashMap<String,String> datamap) throws Throwable {
+    @Then("I want to book a meeting with the title “Introduction”")
+    public void i_want_to_book_a_meeting_with_the_title_introduction(HashMap<String,String> datamap)  {
 
         pageobjects.Calendar.add.click();
         Log.info("Click add on calendar" );
@@ -50,7 +49,7 @@ public class Calendar {
     }
 
     @And("^Set Meeting duration as 30 Minutes in the evening everyday$")
-    public void set_meeting_duration_as_30_minutes_in_the_evening_everyday(HashMap<String,String> datamap) throws Throwable {
+    public void set_meeting_duration_as_30_minutes_in_the_evening_everyday(HashMap<String,String> datamap) {
 
         pageobjects.Calendar.AddEventPage.never_link.click();
         pageobjects.Calendar.AddEventPage.everyday.click();
@@ -66,13 +65,13 @@ public class Calendar {
     }
 
     @And("^I save the meeting$")
-    public void i_save_the_meeting() throws Throwable {
+    public void i_save_the_meeting() {
 
         pageobjects.Calendar.AddEventPage.addnewevent.click();
     }
 
     @Then("^I Check if the meeting is created as expected$")
-    public void i_check_if_the_meeting_is_created_as_expected() throws Throwable {
+    public void i_check_if_the_meeting_is_created_as_expected() {
         pageobjects.Calendar.eventconfirmation.isDisplayed();
         Reporter.log("New Event is Successfully Added.");
 

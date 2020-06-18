@@ -1,13 +1,18 @@
 package pageobjects;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import step_definitions.Hooks;
 
-public class CalendarObjects extends Hooks {
+public class CalendarObjects extends BaseClass {
 
+    public CalendarObjects(AppiumDriver driver){
+        super(driver);
+    }
 
     @FindBy(how=How.NAME, using="Continue")
     public static IOSElement continue_button;

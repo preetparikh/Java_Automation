@@ -4,6 +4,7 @@ import helpers.Log;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 import pageobjects.CalendarObjects;
 
@@ -14,11 +15,11 @@ import java.util.List;
 
 public class CalendarSteps extends Hooks{
 
-    CalendarObjects cobject = new CalendarObjects();
     public static List<HashMap<String,String>> datamap = null;
 
 
     public CalendarSteps() throws MalformedURLException, InterruptedException {
+
         setup();
 
         datamap = new ArrayList<HashMap<String,String>>();
@@ -34,6 +35,8 @@ public class CalendarSteps extends Hooks{
 
     @Given("I have launched the Calendar App")
     public void i_have_launched_the_Calendar_App()  {
+
+        PageFactory.initElements(driver,CalendarObjects.class);
 
         boolean continue_button_present = CalendarObjects.continue_button.isDisplayed();
         boolean allow_button_present = CalendarObjects.allow_while_using.isDisplayed();

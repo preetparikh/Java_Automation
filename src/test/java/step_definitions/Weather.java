@@ -1,36 +1,82 @@
 package step_definitions;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-public class Weather {
-    @Given("^I like to holiday in Bondi Beach$")
-    public void i_like_to_holiday_in_bondi_beach() throws Throwable {
-//        driver.drivergetTitle();
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.junit.Assert;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
+import static step_definitions.HelperMethods.getDayName;
+
+
+public class Weather extends ServiceHooks{
+
+    @Given("^I like to holiday on \"([^\"]*)\"$")
+    public void i_like_to_holiday_on(String name) {
+        request = given().queryParams("city","Bondi Beach","key",APIKey);
     }
 
-    @And("^I only like to holiday on Thursdays$")
-    public void i_only_like_to_holiday_on_thursday() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+    @When("^I look up the weather forecast for the next (\\d+) days$")
+    public void i_look_up_the_weather_forecast_for_the_next(int daysToConsider) {
+
+        response = request.queryParam("days",daysToConsider).when().get(BASE_URI);
+    }
+
+    public void verify_valid_response_and_status_code(){
+        String contentType = response.getContentType();
+        int statusCode = response.getStatusCode();
+        Assert.assertTrue("The response is not valid JSON",contentType.contains("application/json"));
+
+        Assert.assertEquals("Expecting status code as 200 but it is displayed as "+statusCode,200,statusCode);
+
+    }
+    @Then("^The response is valid and contains \"([^\"]*)\" as city name$")
+    public void verify_response_and_city_name(String cityNameToverfiy){
+        verify_valid_response_and_status_code();
+        String actualCityName = response.then().extract().path("city_name");
+        System.out.println(actualCityName);
+        Assert.assertEquals("City Name is not displayed with "+actualCityName,cityNameToverfiy,actualCityName);
 
     }
 
-    @When("^I look up the the weather forecast for the next 14 days$")
-    public void i_look_up_the_weather_forecast_for_the_next_14_days() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+    @And("^I can see the max temperature on \"([^\"]*)\" is always above (\\d+) degrees$")
+    public void verify_max_temperature_is_above_10_degrees(String particularDay, int degreesToVerify){
+
+        String responseData = response.then().extract().asString();
+        JSONObject jsonObject = new JSONObject(responseData);
+        JSONArray jsonArray = jsonObject.getJSONArray("data");
+        for (int index = 0; index < jsonArray.length(); index++) {
+            JSONObject dataObj = jsonArray.getJSONObject(index); // you will get the json object
+            String actualDateTime = dataObj.getString("datetime");
+            String dayName = getDayName(actualDateTime);
+            if(dayName.equals(particularDay)){
+                int maxTemp = dataObj.getInt("max_temp");
+                assertThat(maxTemp, greaterThan(degreesToVerify));
+            }
+        }
     }
 
-    @Then("^I can see the max temperature on Thursdays is always above 10 degrees in Bondi Beach$")
-    public void i_can_see_the_max_tempreture_on_thursday_isalways_above_10_egrees_in_bondi_beach() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+    @And("^There is no snow forecast for any day$")
+    public void verify_no_snow_forecast(){
+
+        String responseData = response.then().extract().asString();
+        JSONObject jsonObject = new JSONObject(responseData);
+        JSONArray jsonArray = jsonObject.getJSONArray("data");
+        for (int index = 0; index < jsonArray.length(); index++) {
+            JSONObject dataObj = jsonArray.getJSONObject(index); // you will get the json object
+            int actualSnow = dataObj.getInt("snow");
+            assertThat(actualSnow, equalTo(0));
+        }
     }
 
-    @And("^I can see that it won't be snowing for the next 14 days$")
-    public void i_can_see_that_it_wont_be_snowing_for_the_next_14_days() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-    }
+
 
 }
 

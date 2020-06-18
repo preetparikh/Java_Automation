@@ -11,7 +11,7 @@ public class Weather {
 //        driver.drivergetTitle();
     }
 
-    @Given("^I only like to holiday on Thursdays$")
+    @And("^I only like to holiday on Thursdays$")
     public void i_only_like_to_holiday_on_thursday() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
 
@@ -27,7 +27,7 @@ public class Weather {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @Then("^I can see that it won't be snowing for the next 14 days$")
+    @And("^I can see that it won't be snowing for the next 14 days$")
     public void i_can_see_that_it_wont_be_snowing_for_the_next_14_days() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
     }

@@ -4,50 +4,110 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import step_definitions.Hooks;
 
-public class CalendarObjects extends BaseClass {
+public class CalendarObjects {
+
+    private AppiumDriver driver;
 
     public CalendarObjects(AppiumDriver driver){
-        super(driver);
+        PageFactory.initElements(driver,this);
+        this.driver = driver;
     }
 
     @FindBy(how=How.NAME, using="Continue")
-    public static IOSElement continue_button;
+    WebElement continue_button;
 
     @FindBy(how=How.NAME, using="Allow While Using App")
-    public static IOSElement allow_while_using;
+    WebElement allow_while_using;
 
     @FindBy(how=How.NAME, using="Add")
-    public static IOSElement add;
+    WebElement add;
 
     @FindBy(how=How.NAME, using="Introduction, from 4:00 PM to 4:30 PM")
-    public static IOSElement eventconfirmation;
+    WebElement eventconfirmation;
 
     @FindBy(how=How.NAME, using="Add")
-    public static IOSElement addnewevent;
+    WebElement addnewevent;
 
     @FindBy(how=How.NAME, using="Every Day")
-    public static IOSElement everyday;
+    WebElement everyday;
 
     @FindBy(how=How.NAME, using="Never")
-    public static IOSElement never_link;
+    WebElement never_link;
 
     @FindBy(how=How.NAME, using="Starts")
-    public static IOSElement starts;
+    WebElement starts;
 
     @FindBy(how=How.NAME, using="Ends")
-    public static IOSElement ends;
+    WebElement ends;
 
     @iOSXCUITFindBy(xpath="//XCUIElementTypeApplication[@name=\"Calendar\"]//descendant::XCUIElementTypeTextField[@value=\"Title\"]")
-    public static IOSElement title;
+    WebElement title;
 
     @iOSXCUITFindBy(xpath="//XCUIElementTypeApplication[@name=\"Calendar\"]//descendant::XCUIElementTypePickerWheel[2]")
-    public static IOSElement hour;
+    WebElement hour;
 
     @iOSXCUITFindBy(xpath="//XCUIElementTypeApplication[@name=\"Calendar\"]//descendant::XCUIElementTypePickerWheel[3]")
-    public static IOSElement minute;
+    WebElement minute;
 
+    public void clickcontinue(){
+        continue_button.click();
+    }
+
+    public void SetTitle(String titleName){
+        title.sendKeys(titleName);
+    }
+
+    public void clickallow(){
+        allow_while_using.click();
+    }
+
+    public void clickadd(){
+        add.click();
+    }
+
+    public void clickaddevent(){
+        addnewevent.click();
+    }
+
+    public void clickeveryday(){
+        everyday.click();
+    }
+
+    public void clicknever(){
+        never_link.click();
+    }
+
+    public void clickstarts(){
+        starts.click();
+    }
+
+    public void clickends(){
+        ends.click();
+    }
+
+    public void SetHour(String hourvalue){
+        hour.sendKeys(hourvalue);
+    }
+
+    public void SetMinute(String minutevalue){
+        minute.sendKeys(minutevalue);
+    }
+
+    public boolean continuevisible(){
+        return continue_button.isDisplayed();
+    }
+
+    public boolean allowvisible(){
+        return allow_while_using.isDisplayed();
+    }
+
+    public boolean confirmationvisible(){
+        return eventconfirmation.isDisplayed();
+    }
 }

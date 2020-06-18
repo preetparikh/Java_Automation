@@ -9,5 +9,5 @@ public class ServiceHooks {
     protected ValidatableResponse json;
     protected RequestSpecification request;
     protected String BASE_URI = "https://api.weatherbit.io/v2.0/forecast/daily";
-    protected String APIKey = "1ddfa7b8be184cc7b25e3da8476fa1fa";
+    protected String APIKey = "";
 }

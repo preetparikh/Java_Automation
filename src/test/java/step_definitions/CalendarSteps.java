@@ -4,14 +4,10 @@ import helpers.Log;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 import pageobjects.CalendarObjects;
 
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class CalendarSteps extends Hooks{
 
@@ -22,16 +18,15 @@ public class CalendarSteps extends Hooks{
 
         setup();
         cOBJ = new CalendarObjects(driver);
-
+        Thread.sleep(5000);
         boolean continue_button_present = cOBJ.continuevisible();
-        boolean allow_button_present = cOBJ.allowvisible();
 
         if (continue_button_present) {
             cOBJ.clickcontinue();
             Log.info("Click continue on first launch");
         }
 
-        else if (allow_button_present) {
+        else if (cOBJ.allowvisible()) {
             cOBJ.clickallow();
             Log.info("Click allow on first launch");
         }

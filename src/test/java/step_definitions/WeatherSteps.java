@@ -1,5 +1,6 @@
 package step_definitions;
 
+import helpers.ServiceHooks;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,10 +14,10 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
-import static step_definitions.HelperMethods.getDayName;
+import static helpers.HelperMethods.getDayName;
 
 
-public class Weather extends ServiceHooks{
+public class WeatherSteps extends ServiceHooks {
 
     @Given("^I like to holiday on \"([^\"]*)\"$")
     public void i_like_to_holiday_on(String name) {

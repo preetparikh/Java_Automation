@@ -1,15 +1,16 @@
 package step_definitions;
 
+import helpers.Hooks;
 import helpers.Log;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.testng.Reporter;
-import pageobjects.CalendarObjects;
+import page_objects.CalendarObjects;
 
 import java.net.MalformedURLException;
 
-public class CalendarSteps extends Hooks{
+public class CalendarSteps extends Hooks {
 
     CalendarObjects cOBJ;
 
@@ -19,15 +20,15 @@ public class CalendarSteps extends Hooks{
         setup();
         cOBJ = new CalendarObjects(driver);
         Thread.sleep(5000);
-        boolean continue_button_present = cOBJ.continuevisible();
+        boolean continue_button_present = cOBJ.continueVisible();
 
         if (continue_button_present) {
-            cOBJ.clickcontinue();
+            cOBJ.clickContinue();
             Log.info("Click continue on first launch");
         }
 
-        else if (cOBJ.allowvisible()) {
-            cOBJ.clickallow();
+        else if (cOBJ.allowVisible()) {
+            cOBJ.clickAllow();
             Log.info("Click allow on first launch");
         }
 
@@ -40,10 +41,10 @@ public class CalendarSteps extends Hooks{
     @Then("I want to book a meeting with the title “Introduction”")
     public void i_want_to_book_a_meeting_with_the_title_introduction()  {
 
-        cOBJ.clickadd();
+        cOBJ.clickAdd();
         Log.info("Click add on calendar" );
 
-        cOBJ.SetTitle("Introduction");
+        cOBJ.setTitle("Introduction");
         Log.info(" is entered in Title text box" );
 
     }
@@ -51,28 +52,30 @@ public class CalendarSteps extends Hooks{
     @And("^Set Meeting duration as 30 Minutes in the evening everyday$")
     public void set_meeting_duration_as_30_minutes_in_the_evening_everyday() {
 
-        cOBJ.clicknever();
-        cOBJ.clickeveryday();
+        cOBJ.clickNever();
+        cOBJ.clickEveryday();
         Log.info("Event to repeat everyday" );
 
-        cOBJ.clickstarts();
-        cOBJ.SetHour("4");
-        cOBJ.SetMinute("00");
+        cOBJ.clickStarts();
+        cOBJ.setHour("4");
+        cOBJ.setMinute("00");
+        cOBJ.setAmPm("PM");
 
-        cOBJ.clickends();
-        cOBJ.SetHour("4");
-        cOBJ.SetMinute("30");
+        cOBJ.clickEnds();
+        cOBJ.setHour("4");
+        cOBJ.setMinute("30");
+        cOBJ.setAmPm("PM");
     }
 
     @And("^I save the meeting$")
     public void i_save_the_meeting() {
 
-        cOBJ.clickaddevent();
+        cOBJ.clickAddevent();
     }
 
     @Then("^I Check if the meeting is created as expected$")
     public void i_check_if_the_meeting_is_created_as_expected() {
-        cOBJ.confirmationvisible();
+        cOBJ.confirmationVisible();
         Reporter.log("New Event is Successfully Added.");
 
     }

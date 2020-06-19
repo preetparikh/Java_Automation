@@ -1,14 +1,11 @@
-package pageobjects;
+package page_objects;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import step_definitions.Hooks;
 
 public class CalendarObjects {
 
@@ -31,7 +28,7 @@ public class CalendarObjects {
     @FindBy(how=How.NAME, using="Introduction, from 4:00 PM to 4:30 PM")
     WebElement eventconfirmation;
 
-    @FindBy(how=How.NAME, using="Add")
+    @FindBy(how=How.XPATH, using="//XCUIElementTypeButton[@name='Add']")
     WebElement addnewevent;
 
     @FindBy(how=How.NAME, using="Every Day")
@@ -46,68 +43,75 @@ public class CalendarObjects {
     @FindBy(how=How.NAME, using="Ends")
     WebElement ends;
 
-    @iOSXCUITFindBy(xpath="//XCUIElementTypeApplication[@name=\"Calendar\"]//descendant::XCUIElementTypeTextField[@value=\"Title\"]")
+    @FindBy(how=How.XPATH, using="//XCUIElementTypeApplication[@name='Calendar']//descendant::XCUIElementTypeTextField[@value='Title']")
     WebElement title;
 
-    @iOSXCUITFindBy(xpath="//XCUIElementTypeApplication[@name=\"Calendar\"]//descendant::XCUIElementTypePickerWheel[2]")
+    @FindBy(how=How.XPATH, using="//XCUIElementTypeApplication[@name='Calendar']//descendant::XCUIElementTypePickerWheel[2]")
     WebElement hour;
 
-    @iOSXCUITFindBy(xpath="//XCUIElementTypeApplication[@name=\"Calendar\"]//descendant::XCUIElementTypePickerWheel[3]")
+    @FindBy(how=How.XPATH, using="//XCUIElementTypeApplication[@name='Calendar']//descendant::XCUIElementTypePickerWheel[3]")
     WebElement minute;
 
-    public void clickcontinue(){
+    @FindBy(how=How.XPATH, using="//XCUIElementTypeApplication[@name='Calendar']//descendant::XCUIElementTypePickerWheel[4]")
+    WebElement ampm;
+
+    public void clickContinue(){
         continue_button.click();
     }
 
-    public void SetTitle(String titleName){
+    public void setTitle(String titleName){
         title.sendKeys(titleName);
     }
 
-    public void clickallow(){
+    public void clickAllow(){
         allow_while_using.click();
     }
 
-    public void clickadd(){
+    public void clickAdd(){
         add.click();
     }
 
-    public void clickaddevent(){
+    public void clickAddevent(){
         addnewevent.click();
     }
 
-    public void clickeveryday(){
+    public void clickEveryday(){
         everyday.click();
     }
 
-    public void clicknever(){
+    public void clickNever(){
         never_link.click();
     }
 
-    public void clickstarts(){
+    public void clickStarts(){
         starts.click();
     }
 
-    public void clickends(){
+    public void clickEnds(){
         ends.click();
     }
 
-    public void SetHour(String hourvalue){
+    public void setHour(String hourvalue){
         hour.sendKeys(hourvalue);
     }
 
-    public void SetMinute(String minutevalue){
+    public void setMinute(String minutevalue){
         minute.sendKeys(minutevalue);
     }
 
-    public boolean continuevisible(){
+    public void setAmPm(String ampmselection){
+        ampm.sendKeys(ampmselection);
+    }
+
+    public boolean continueVisible(){
         return continue_button.isDisplayed();
     }
 
-    public boolean allowvisible(){
+    public boolean allowVisible(){
         return allow_while_using.isDisplayed();
     }
 
-    public boolean confirmationvisible(){
+    public boolean confirmationVisible(){
         return eventconfirmation.isDisplayed();
     }
 }

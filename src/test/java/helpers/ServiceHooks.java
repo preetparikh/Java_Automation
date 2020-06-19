@@ -1,4 +1,4 @@
-package step_definitions;
+package helpers;
 
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;

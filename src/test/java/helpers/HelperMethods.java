@@ -1,4 +1,4 @@
-package step_definitions;
+package helpers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

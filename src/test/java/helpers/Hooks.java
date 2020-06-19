@@ -1,4 +1,4 @@
-package step_definitions;
+package helpers;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,8 +15,6 @@ public class Hooks {
 
     public static AppiumDriver driver;
 
-    //    @BeforeTest
-//    @Parameters({"deviceName","udid", "platformVersion","url"})
     public void setup() throws InterruptedException, MalformedURLException
     {
         DesiredCapabilities cap=new DesiredCapabilities();

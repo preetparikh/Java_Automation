@@ -26,4 +26,4 @@ In IDE settings/preferences > Build, Execution, Deployment > Compiler > Java Com
 How to Run:
 
 Once project is cloned and set up, right click on feature files and run as a feature.
-For Mobile: Make sure Apppium is running on server 127.0.0.1:4723
+For Mobile: Make sure Appium is running on server 127.0.0.1:4723

@@ -1,6 +1,10 @@
 iOS Calendar & Weather API Automation
 
-This project is based on Page Objects model.
+This project is based on Page Objects model and caters for both mobile and API test automation. 
+
+Further Improvements:
+1. A bit of redundant code can be removed
+2. Hard coding of inputs needs to be parameterised
 
 The project was designed on Mac OS Mojave using IntelliJ Idea 2019 community edition.
 
